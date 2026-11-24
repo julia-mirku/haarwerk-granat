@@ -160,19 +160,6 @@ footer p{color:var(--plum2);font-size:14px}
 .deco{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .deco .bub{pointer-events:auto}
 .hero .wrap,section .wrap{position:relative;z-index:1}
-
-.art{position:relative;overflow:hidden}
-.art .b{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0 9%,rgba(255,255,255,0) 10%),radial-gradient(circle,var(--gum),var(--pink2) 78%,var(--pink));box-shadow:inset -10px -12px 0 rgba(255,46,136,.35)}
-.a1{background:repeating-linear-gradient(135deg,#FFD0E6 0 22px,#FFE4F1 22px 44px)}
-.a1 .b1{width:58%;aspect-ratio:1;left:12%;top:18%}.a1 .b2{width:22%;aspect-ratio:1;right:10%;top:10%;background:radial-gradient(circle at 32% 28%,#fff 0 9%,transparent 10%),radial-gradient(circle,#8FF5DA,var(--mint))}.a1 .b3{width:14%;aspect-ratio:1;right:22%;bottom:14%;background:radial-gradient(circle at 32% 28%,#fff 0 9%,transparent 10%),radial-gradient(circle,#FFF3A6,var(--lemon))}
-.a1 .sci{position:absolute;width:34%;right:12%;bottom:20%;transform:rotate(-18deg)}
-.a2{background:var(--mint);display:flex;align-items:flex-end;justify-content:center;gap:4%;padding:12% 8% 0;cursor:default}
-.a2 i{flex:1;height:86%;border-radius:999px 999px 0 0;border:3px solid var(--plum);border-bottom:0;background:linear-gradient(180deg,var(--c),var(--c) 70%,rgba(255,255,255,.5));transform-origin:top;transition:transform .5s var(--boing)}
-.a2 i:nth-child(odd){height:78%}
-@media (hover:hover){.a2 i:hover{transform:rotate(6deg)}}
-.a3{background:var(--lemon);cursor:default}
-.a3 .b1{width:46%;aspect-ratio:1;left:10%;top:14%}.a3 .b2{width:20%;aspect-ratio:1;right:14%;top:30%}
-.a3 .pin{position:absolute;right:16px;bottom:16px;background:#fff;border:3px solid var(--plum);border-radius:999px;padding:8px 14px;font-weight:700;box-shadow:3px 3px 0 var(--plum);transform:rotate(-3deg)}
 @media (max-width:1100px){.pg{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){
  .nav{display:none}.top .call{margin-left:auto}
@@ -205,7 +192,7 @@ footer p{color:var(--plum2);font-size:14px}
  .s,.s:nth-child(2),.s:nth-child(3){margin-left:0;border-radius:28px}
  .rail{grid-auto-columns:84%;gap:14px}
  .arr{display:none}.dots{display:flex}
- .kimg{min-height:0;aspect-ratio:4/3}
+ .kimg{min-height:0;aspect-ratio:4/3;width:100%;align-self:start}
  .box{padding:22px}
  .week button{font-size:14px}
 }
@@ -215,7 +202,7 @@ footer p{color:var(--plum2);font-size:14px}
 <body>
 <header class="top"><div class="wrap">
   <a class="logo" href="#start" aria-label="Bubble Cut – nach oben">Bubble<i>Cut</i></a>
-  <nav class="nav" aria-label="Navigation"><a href="#preise">Preise</a><a href="#beratung">Extensions</a><a href="#kontakt">Kontakt</a></nav>
+  <nav class="nav" aria-label="Navigation"><a href="#preise">Preise</a><a href="#beratung">Extensions</a><a href="#salon">Salon</a><a href="#kontakt">Kontakt</a></nav>
   <a class="btn call" href="tel:+498310004711"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="t">0831 000 47 11</span></a>
 </div></header>
 
@@ -235,7 +222,7 @@ footer p{color:var(--plum2);font-size:14px}
       </div>
     </div>
     <div class="blob">
-      <div class="ph art a1" role="img" aria-label="Bubble Cut"><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><svg class="sci" viewBox="0 0 120 120" fill="none" stroke="#2B0A1E" stroke-width="7" stroke-linecap="round"><circle cx="30" cy="88" r="16" fill="#fff"/><circle cx="90" cy="88" r="16" fill="#fff"/><path d="M42 76 L88 18 M78 76 L32 18"/></svg></div>
+      <div class="ph"><img src="img/hero.webp" alt="Lange, glänzende blonde Wellen im rosa Salon-Stuhl" fetchpriority="high"></div>
       <span class="stk s1">Extensions<small>ab 350 €</small></span>
       <span class="stk s2">Barber-Ecke<small>Schnitt ab 39 €</small></span>
       <span class="stk s3">Beratung<small>immer gratis</small></span>
@@ -274,7 +261,24 @@ footer p{color:var(--plum2);font-size:14px}
       </div>
       <div class="ctas" style="margin-top:26px"><a class="btn" href="tel:+498310004711">Beratung klarmachen</a></div>
     </div>
-    <div class="simg art a2 up" role="img" aria-label="Haarsträhnen-Farbpalette"><i style="--c:#F6E3B4"></i><i style="--c:#E9C98A"></i><i style="--c:#D7A86A"></i><i style="--c:#B97B4B"></i><i style="--c:#FFB3D6"></i><i style="--c:#FF5FA2"></i><i style="--c:#FF2E88"></i></div>
+    <figure class="simg up" data-lb><img src="img/extensions.webp" alt="Strähnen-Wand von Blond bis Pink an mintgrüner Lochwand" loading="lazy"></figure>
+  </div>
+</section>
+
+<section id="salon">
+  <div class="wrap">
+    <div class="head up"><h2>Unser <em>Wohnzimmer</em></h2><p>Samtsofa, Pflege-Wand, Barber-Ecke – schau dich um.</p><span class="bub"></span></div>
+    <div class="rail-wrap up">
+      <button class="arr l" aria-label="Zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="rail">
+        <figure class="shot" data-lb><img src="img/lounge.webp" alt="Lounge mit rosa Samtsofa und Neon-Blase" loading="lazy"><span>Die Lounge</span></figure>
+        <figure class="shot" data-lb><img src="img/barber.webp" alt="Mintgrüner Barber-Stuhl vor pinker Wand" loading="lazy"><span>Barber-Ecke</span></figure>
+        <figure class="shot" data-lb><img src="img/pflege.webp" alt="Pflege-Wand mit Pastell-Flaschen" loading="lazy"><span>Pflege-Wand</span></figure>
+        <figure class="shot" data-lb><img src="img/platz.webp" alt="Styling-Platz mit rundem Leuchtspiegel" loading="lazy"><span>Dein Platz</span></figure>
+      </div>
+      <button class="arr r" aria-label="Weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="dots"></div>
+    </div>
   </div>
 </section>
 
@@ -306,7 +310,7 @@ footer p{color:var(--plum2);font-size:14px}
         <a href="#kontakt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Bahnhofstraße 12, 87435 Kempten</a>
       </div>
     </div>
-    <div class="kimg art a3 up" role="img" aria-label="Bubble Cut Kempten"><i class="b b1"></i><i class="b b2"></i><span class="pin">📍 Bahnhofstraße 12</span></div>
+    <figure class="kimg up" data-lb><img src="img/salon.webp" alt="Salon mit drei Plätzen und runden Spiegeln" loading="lazy"></figure>
   </div>
 </section>
 </main>

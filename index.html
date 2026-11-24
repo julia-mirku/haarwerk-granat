@@ -109,13 +109,13 @@ section{position:relative;padding:76px 0}
 .simg img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 @media (hover:hover){.simg:hover img{transform:scale(1.05)}}
 /* rails */
-.rail-wrap{position:relative}
+.rail-wrap{position:relative;padding-inline:76px}
 .rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*20px)/3);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px 8px 14px;overscroll-behavior-x:contain}
 .rail::-webkit-scrollbar{display:none}
 .rail>*{scroll-snap-align:start}
 .arr{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--lemon);border:3px solid var(--plum);box-shadow:3px 3px 0 var(--plum);transition:transform .25s var(--boing),opacity .2s,background .2s}
 .arr svg{width:22px;height:22px}
-.arr.l{left:-26px}.arr.r{right:-26px}
+.arr.l{left:6px}.arr.r{right:6px}
 .arr[disabled]{opacity:0;pointer-events:none}
 @media (hover:hover){.arr:hover{transform:translateY(-50%) scale(1.12) rotate(-6deg);background:var(--mint)}}
 .dots{display:none;justify-content:center;gap:7px;margin-top:10px}
@@ -167,7 +167,7 @@ footer p{color:var(--plum2);font-size:14px}
  .hero .wrap{min-height:0}
  .blob{min-height:0;height:auto;aspect-ratio:1/1;max-height:520px}
  .rail{grid-auto-columns:calc((100% - 20px)/2)}
- .arr.l{left:-12px}.arr.r{right:-12px}
+ .rail-wrap{padding-inline:64px}.arr.l{left:0}.arr.r{right:0}
 }
 @media (max-width:640px){
  .wrap{width:calc(100% - 32px)}
@@ -191,7 +191,7 @@ footer p{color:var(--plum2);font-size:14px}
  .pg{grid-template-columns:1fr}.card{transform:none}
  .s,.s:nth-child(2),.s:nth-child(3){margin-left:0;border-radius:28px}
  .rail{grid-auto-columns:84%;gap:14px}
- .arr{display:none}.dots{display:flex}
+ .arr{display:none}.dots{display:flex}.rail-wrap{padding-inline:0}
  .kimg{min-height:0;aspect-ratio:4/3;width:100%;align-self:start}
  .box{padding:22px}
  .week button{font-size:14px}

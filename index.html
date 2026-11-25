@@ -38,6 +38,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
  .btn.alt:hover{background:#5BF0C6}.btn:not(.alt):not(.w):hover{background:#FF4797}
 }
 .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--plum)}
+/* sound toggle */
+.snd{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#fff;color:var(--plum);border:3px solid var(--plum);box-shadow:3px 3px 0 var(--plum);transition:transform .2s var(--boing),box-shadow .2s,background .2s}
+.snd svg{width:20px;height:20px}.snd .w{transition:opacity .2s}.snd .x{opacity:0;transition:opacity .2s}
+.snd[aria-pressed=false] .w{opacity:0}.snd[aria-pressed=false] .x{opacity:1}.snd[aria-pressed=false]{background:var(--cream)}
+@media (hover:hover){.snd:hover{transform:rotate(-8deg) scale(1.06);background:var(--gum)}}
+.snd:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--plum)}
 /* bubbles */
 .bub{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0 9%,rgba(255,255,255,0) 10%),radial-gradient(circle at 50% 50%,var(--gum),var(--pink2) 78%,var(--pink) 100%);box-shadow:inset -8px -10px 0 rgba(255,46,136,.35);transform:scale(0);transition:transform .9s var(--boing);pointer-events:auto;cursor:pointer}
 .in .bub,.bub.in{transform:scale(1)}
@@ -162,7 +168,7 @@ footer p{color:var(--plum2);font-size:14px}
 .hero .wrap,section .wrap{position:relative;z-index:1}
 @media (max-width:1100px){.pg{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){
- .nav{display:none}.top .call{margin-left:auto}
+ .nav{display:none}.top .snd{margin-left:auto}.top .snd+.call{margin-left:0}
  .hero .wrap,.steps,.kon{grid-template-columns:1fr}
  .hero .wrap{min-height:0}
  .blob{min-height:0;height:auto;aspect-ratio:1/1;max-height:520px}
@@ -173,6 +179,7 @@ footer p{color:var(--plum2);font-size:14px}
  .wrap{width:calc(100% - 32px)}
  .top{padding:8px 0}.top .wrap{padding:6px 6px 6px 16px;box-shadow:3px 3px 0 var(--plum)}
  .logo{font-size:24px}
+ .snd{width:38px;height:38px;box-shadow:2px 2px 0 var(--plum)}.snd svg{width:18px;height:18px}
  .top .call{padding:9px 14px;font-size:14px;box-shadow:2px 2px 0 var(--plum)}.top .call .t{display:none}
  .hero{padding:14px 0 26px}.hero .wrap{gap:14px}
  .hero .wrap>div:first-child{display:flex;flex-direction:column}.hero h1{order:1}.hero .chips{order:2;margin:14px 0 0}.hero .lead{order:3}.hero .ctas{order:4}
@@ -203,6 +210,7 @@ footer p{color:var(--plum2);font-size:14px}
 <header class="top"><div class="wrap">
   <a class="logo" href="#start" aria-label="Bubble Cut – nach oben">Bubble<i>Cut</i></a>
   <nav class="nav" aria-label="Navigation"><a href="#preise">Preise</a><a href="#beratung">Extensions</a><a href="#salon">Salon</a><a href="#kontakt">Kontakt</a></nav>
+  <button class="snd" type="button" aria-pressed="true" aria-label="Plopp-Sound ein/aus" title="Plopp-Sound ein/aus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/><path class="x" d="m16 9 6 6m0-6-6 6"/></svg></button>
   <a class="btn call" href="tel:+41520004711"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="t">052 000 47 11</span></a>
 </div></header>
 
@@ -321,8 +329,21 @@ footer p{color:var(--plum2);font-size:14px}
 <script>
 document.documentElement.classList.add('js');document.body.classList.add('js');
 const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+/* plopp sound (Web Audio, ohne Dateien) */
+const SND=(()=>{let ac=null,on=true,t=[];try{on=localStorage.getItem('bc-snd')!=='0'}catch(e){}
+ const btn=document.querySelector('.snd'),set=v=>{on=v;btn.setAttribute('aria-pressed',v);try{localStorage.setItem('bc-snd',v?'1':'0')}catch(e){}};set(on);
+ const unlock=()=>{try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;if(!ac)ac=new C();if(ac.state!=='running')ac.resume();const s=ac.createBufferSource();s.buffer=ac.createBuffer(1,1,22050);s.connect(ac.destination);s.start(0)}catch(e){}};
+ ['pointerdown','touchend','click','keydown'].forEach(ev=>document.addEventListener(ev,unlock,{capture:true,passive:true}));
+ btn.addEventListener('click',()=>{set(!on);if(on)setTimeout(()=>play(1.1),30)});
+ function play(k=1){if(!on||!ac||ac.state!=='running')return;const n=performance.now();t=t.filter(x=>n-x<1000);if(t.length>=8||(t.length&&n-t[t.length-1]<45))return;t.push(n);
+  try{const now=ac.currentTime,f=(520+Math.random()*260)*k,o=ac.createOscillator(),g=ac.createGain(),out=ac.createGain();out.gain.value=.5;out.connect(ac.destination);
+   o.type='sine';o.frequency.setValueAtTime(f*.55,now);o.frequency.exponentialRampToValueAtTime(f*1.6,now+.012);o.frequency.exponentialRampToValueAtTime(f*.7,now+.09);
+   g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.32,now+.004);g.gain.exponentialRampToValueAtTime(.0001,now+.11);o.connect(g).connect(out);o.start(now);o.stop(now+.13);
+   const len=Math.floor(ac.sampleRate*.02),b=ac.createBuffer(1,len,ac.sampleRate),d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3);
+   const ns=ac.createBufferSource(),bp=ac.createBiquadFilter(),ng=ac.createGain();ns.buffer=b;bp.type='bandpass';bp.frequency.value=f*3;bp.Q.value=1.2;ng.gain.value=.18;ns.connect(bp).connect(ng).connect(out);ns.start(now)}catch(e){}}
+ return{play}})();
 /* pop bubbles */
-function pop(b){if(b.classList.contains('pop'))return;const r=b.getBoundingClientRect(),host=b.offsetParent||document.body,hr=host.getBoundingClientRect();
+function pop(b){if(b.classList.contains('pop'))return;SND.play();const r=b.getBoundingClientRect(),host=b.offsetParent||document.body,hr=host.getBoundingClientRect();
  for(let i=0;i<8;i++){const s=document.createElement('span');s.className='spark';const a=i/8*Math.PI*2,d=r.width*.7;s.style.left=(r.left-hr.left+r.width/2-4)+'px';s.style.top=(r.top-hr.top+r.height/2-4)+'px';s.style.setProperty('--x',Math.cos(a)*d+'px');s.style.setProperty('--y',Math.sin(a)*d+'px');host.appendChild(s);setTimeout(()=>s.remove(),600)}
  b.classList.add('pop');setTimeout(()=>{b.classList.remove('pop','in');b.style.transform='scale(0)';setTimeout(()=>{b.style.transform='';b.classList.add('in')},2200)},450)}
 $$('.bub').forEach(b=>{b.addEventListener('click',()=>pop(b));if(matchMedia('(hover:hover)').matches)b.addEventListener('mouseenter',()=>pop(b))});
